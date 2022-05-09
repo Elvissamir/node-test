@@ -13,18 +13,14 @@ const readData = async () => {
     }
 }
 
-
 const stringifyInput = data => {
     return JSON.stringify(data)
 }
 
-const writeData = async data => {
+const writeData = async (data) => {
     try {
-        const usersData = await readData()
-        usersData.users.push(data)
-
-        const stringifiedData = stringifyInput(usersData)
-        await fs.writeFile('./data.json', stringifiedData)
+        const stringifiedData = stringifyInput(data)
+        await fs.writeFile(databaseDir, stringifiedData)
 
         return true
     }
