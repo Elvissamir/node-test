@@ -10,6 +10,21 @@ const findByName = async userName => {
     return user
 }
 
+const deleteByName = async userName => {
+    console.log('delete by name')
+    const databaseData = await readData()
+    const index = databaseData.users.findIndex(user => user.user === userName)
+
+    if (index === -1)
+        return null
+    
+    const deletedUser = databaseData.users.splice(index, 1)[0]
+    
+    await writeData(databaseData)
+
+    return deletedUser
+}
+
 const getAll = async () => {
     const databaseData = await readData()
     const users = databaseData.users
@@ -31,5 +46,6 @@ const createUser = async (user) => {
 module.exports = {
     createUser,
     findByName,
+    deleteByName,
     getAll
 }

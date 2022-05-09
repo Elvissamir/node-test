@@ -1,5 +1,9 @@
 const router = require('express').Router()
-const { validateUser, storeUser, getUsers, findUser } = require('../interactors/index')
+const { validateUser, 
+    storeUser, 
+    getUsers, 
+    findUser,
+    deleteUser } = require('../interactors/index')
 
 router.get('/', async (req, res) => {
     const users = await getUsers()
@@ -21,6 +25,16 @@ router.post('/', async (req, res) => {
     
     const data = await storeUser(req.body)
     return res.send(data)
+})
+
+router.delete('/:user', async (req, res) => {
+    console.log('delete user controller')
+    const user = await deleteUser(req.params.user)
+    
+    if (!user) 
+        return res.status(404).send('The user does not exist.')
+
+    return res.send(user)
 })
 
 module.exports = router
