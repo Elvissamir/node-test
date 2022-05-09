@@ -13,6 +13,27 @@ const readData = async () => {
     }
 }
 
+
+const stringifyInput = data => {
+    return JSON.stringify(data)
+}
+
+const writeData = async data => {
+    try {
+        const usersData = await readData()
+        usersData.users.push(data)
+
+        const stringifiedData = stringifyInput(usersData)
+        await fs.writeFile('./data.json', stringifiedData)
+
+        return true
+    }
+    catch (ex) {
+        return ex
+    }
+}
+
 module.exports = {
-    readData
+    readData,
+    writeData
 }

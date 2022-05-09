@@ -10,6 +10,11 @@ const findByUserName = async userName => {
     return user
 }
 
+const createUser = async ({ user, password }) => {
+    const databaseData = await readData()
+}
+
 module.exports = {
-    findByUserName
+    findByUserName,
+    createUser
 }

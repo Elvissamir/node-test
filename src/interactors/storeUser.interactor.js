@@ -1,4 +1,5 @@
 module.exports = (UserDatasource) => async ({ data }) => {    
-    const validation = userValidator(data)
-    return validation
+    const result = await UserDatasource.createUser(data)
+
+    return result
 }
