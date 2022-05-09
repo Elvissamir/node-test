@@ -10,21 +10,6 @@ const findByName = async userName => {
     return user
 }
 
-const deleteByName = async userName => {
-    console.log('delete by name')
-    const databaseData = await readData()
-    const index = databaseData.users.findIndex(user => user.user === userName)
-
-    if (index === -1)
-        return null
-    
-    const deletedUser = databaseData.users.splice(index, 1)[0]
-    
-    await writeData(databaseData)
-
-    return deletedUser
-}
-
 const getAll = async () => {
     const databaseData = await readData()
     const users = databaseData.users
@@ -43,9 +28,39 @@ const createUser = async (user) => {
     return user
 }
 
+const updateByName = async (userName, data) => {
+    const databaseData = await readData()
+    const index = databaseData.users.findIndex(user => user.user === userName)
+
+    if (index === -1)
+        return null
+    
+    const updatedUser = databaseData.users[index]
+    databaseData.users[index] = data
+    
+    await writeData(databaseData)
+
+    return updatedUser
+}
+
+const deleteByName = async userName => {
+    const databaseData = await readData()
+    const index = databaseData.users.findIndex(user => user.user === userName)
+
+    if (index === -1)
+        return null
+    
+    const deletedUser = databaseData.users.splice(index, 1)[0]
+    
+    await writeData(databaseData)
+
+    return deletedUser
+}
+
 module.exports = {
     createUser,
     findByName,
     deleteByName,
+    updateByName,
     getAll
 }
