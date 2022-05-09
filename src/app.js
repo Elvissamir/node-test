@@ -9,7 +9,7 @@ dotenv.config()
 require('express-async-errors')
 
 errors()
-routes(app)
 middleware(app)
+routes(app)
 
 module.exports = app

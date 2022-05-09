@@ -1,8 +1,7 @@
-const validateLoginInteractor = require('./validateLogin')
+const validateLoginInteractor = require('./validateLogin.interactor')
 
 const UserJson = require('../dataSources/User')
-
-const validateLogin = validateLoginInteractor(UserMongo)
+const validateLogin = validateLoginInteractor(UserJson)
 
 module.exports = {
     validateLogin,
