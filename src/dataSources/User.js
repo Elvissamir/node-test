@@ -1,6 +1,6 @@
 const { readData, writeData } = require('./dataActions')
 
-const findByUserName = async userName => {
+const findByName = async userName => {
     const databaseData = await readData()
     const user = databaseData.users.find(user => user.user === userName)
 
@@ -30,6 +30,6 @@ const createUser = async (user) => {
 
 module.exports = {
     createUser,
-    findByUserName,
+    findByName,
     getAll
 }
