@@ -14,6 +14,6 @@ module.exports = (UserDataSource) => async (loginData) => {
     //const token = user.generateAuthToken()
     //return { token: token }
 
-    console.log('return from interactor')
+    console.log('return from login interactor')
     return { token: 'token' }
 }
