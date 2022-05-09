@@ -1,5 +1,5 @@
 module.exports = (UserDatasource) => async (data) => {    
-    const result = await UserDatasource.createUser(data)
+    const result = await UserDatasource.getAll()
 
     return result
 }

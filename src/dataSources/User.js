@@ -10,12 +10,16 @@ const findByUserName = async userName => {
     return user
 }
 
+const getAll = async () => {
+    const databaseData = await readData()
+    const users = databaseData.users
+
+    return users
+}
+
 const createUser = async (user) => {
-    console.log('create user', user)
     const databaseData = await readData()
     databaseData.users.push(user)
-
-    console.log(databaseData)
 
     const result = await writeData(databaseData)
 
@@ -25,6 +29,7 @@ const createUser = async (user) => {
 }
 
 module.exports = {
+    createUser,
     findByUserName,
-    createUser
+    getAll
 }
