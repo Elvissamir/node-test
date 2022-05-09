@@ -1,6 +1,5 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const app = require('./src/app')
+const port = process.env.DEV_PORT || 3001
 const {join} = require('path');
 
 app.get('/', (req, res) => {
