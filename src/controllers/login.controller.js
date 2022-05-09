@@ -3,7 +3,6 @@ const {validateLogin} = require('../interactors/index')
 
 router.post('/', async (req, res) => {
     console.log('controller')
-    console.log('body', req)
     const { error, token } = await validateLogin(req.body)
 
     if (error) 

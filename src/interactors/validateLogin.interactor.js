@@ -1,7 +1,7 @@
 module.exports = (UserDataSource) => async (loginData) => {
     console.log('interactor')
 
-    const user = await UserDataSource.findByUserName()
+    const user = await UserDataSource.findByUserName(loginData.user)
 
     console.log('user', user)
     console.log('login data', loginData)
