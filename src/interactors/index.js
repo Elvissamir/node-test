@@ -6,6 +6,8 @@ const findUserInteractor = require('./findUser.interactor')
 const deleteUserInteractor = require('./deleteUser.interactor')
 const updateUserInteractor = require('./updateUser.interactor')
 const fileDirHandlerInteractor = require('./fileDirHandler')
+const getFilesInteractor = require('./getFiles')
+const deleteFileInteractor = require('./deleteFile.interactor')
 
 // DATA SOURCES
 const UserJson = require('../dataSources/User')
@@ -18,6 +20,8 @@ const validateUser = validateUserInteractor(UserJson)
 const findUser = findUserInteractor(UserJson)
 const updateUser = updateUserInteractor(UserJson)
 const fileDirHandler = fileDirHandlerInteractor()
+const getFiles = getFilesInteractor()
+const deleteFile = deleteFileInteractor()
 
 module.exports = {
     validateLogin,
@@ -27,5 +31,7 @@ module.exports = {
     storeUser,
     updateUser,
     deleteUser,
-    fileDirHandler
+    fileDirHandler,
+    deleteFile,
+    getFiles
 }

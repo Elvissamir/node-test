@@ -3,6 +3,7 @@ const loginController = require('../controllers/login.controller')
 const usersController = require('../controllers/users.controller')
 const imagesController = require('../controllers/images.controller')
 const error = require('../middleware/error')
+const express = require('express')
 
 module.exports = function (app) {
    app.use(loginEndpoint, loginController)
