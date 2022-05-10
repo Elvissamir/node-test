@@ -1,16 +1,19 @@
 const router = require('express').Router()
 const auth = require('../middleware/auth')
 const multer = require('multer')
+const { fileDirHandler } = require('../interactors/index')
 
 const multerConfig = multer.diskStorage({
     destination: async (req, file, callback) => {
-        console.log(req.user.user)
-        
-        callback(null, `images/`)
+        const user = req.user 
+        const imageName = req.body.imageName
+        const dir = await fileDirHandler({ user, imageName })
+
+        callback(null, dir)
     },
     filename: (req, file, callback) => {
-        console.log('filename')
         const extension = file.mimetype.split('/')[1]
+        console.log('img name', req.body.imageName)
         callback(null, `${Date.now()}.${extension}`)
     }
 })
