@@ -1,3 +1,5 @@
+const UserModel = require('../models/User.model')
+
 module.exports = (UserDataSource) => async (loginData) => {
     console.log('validate login interactor')
 
@@ -14,9 +16,10 @@ module.exports = (UserDataSource) => async (loginData) => {
     if (!samePassword)
         return { error: { details: [{ message: 'Invalid user or password' }]}}
 
-    //const token = user.generateAuthToken()
-    //return { token: token }
-
+    const token = UserModel.generateAuthToken({ 
+        user: user.user, 
+        roles: user.roles 
+    })
     console.log('return from login interactor')
-    return { token: 'token' }
+    return { token }
 }
