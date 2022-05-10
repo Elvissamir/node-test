@@ -5,19 +5,21 @@ const { validateUser,
     findUser,
     updateUser,
     deleteUser } = require('../interactors/index')
+const admin = require('../middleware/admin')
+const auth = require('../middleware/auth')
 
-router.get('/', async (req, res) => {
+router.get('/', [auth, admin], async (req, res) => {
     const users = await getUsers()
     return res.send(users)
 })
 
-router.get('/:user', async (req, res) => {
+router.get('/:user', [auth, admin], async (req, res) => {
     const user = await findUser(req.params.user)
 
     return res.send(user)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', [auth, admin], async (req, res) => {
     const { error } = await validateUser({ data: req.body})
     if (error) 
         return res.status(400).send(error.details[0].message)
@@ -26,7 +28,7 @@ router.post('/', async (req, res) => {
     return res.send(data)
 })
 
-router.put('/:user', async (req, res) => {
+router.put('/:user', [auth, admin], async (req, res) => {
     console.log('put user controller')
     const { error } = await validateUser({ data: req.body})
     if (error) 
@@ -36,7 +38,7 @@ router.put('/:user', async (req, res) => {
     return res.send(data)
 })
 
-router.delete('/:user', async (req, res) => {
+router.delete('/:user', [auth, admin], async (req, res) => {
     const user = await deleteUser(req.params.user)
 
     if (!user) 
