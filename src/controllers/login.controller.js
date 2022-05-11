@@ -2,8 +2,6 @@ const router = require('express').Router()
 const {validateLogin} = require('../interactors/index')
 
 router.post('/', async (req, res) => {
-    console.log('controller')
-    console.log('body', req.body)
     const { error, token } = await validateLogin(req.body)
 
     if (error) 

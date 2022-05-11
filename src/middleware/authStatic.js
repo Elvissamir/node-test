@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 
 const auth = (req, res, next) => {
-    console.log('auth static')
     const token = req.query.token
     if (!token) return res.status(401).send('Access denied. No token provided.')
 

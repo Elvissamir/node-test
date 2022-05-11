@@ -1,7 +1,7 @@
 const fs = require('fs/promises')
 
 module.exports = () => async (user, fileName) => {
-    console.log('delete file interactor')
+   
     try {
         const files = await fs.readdir('./images')
         if (!files.includes(user.user))

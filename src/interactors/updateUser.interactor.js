@@ -1,5 +1,4 @@
-module.exports = (UserDatasource) => async (user, data) => {
-    console.log('update user interactor')    
+module.exports = (UserDatasource) => async (user, data) => {  
     const result = await UserDatasource.updateByName(user, data)
 
     return result
