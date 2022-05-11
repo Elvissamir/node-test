@@ -30,6 +30,7 @@ router.post('/', [auth, admin], async (req, res) => {
 
 router.put('/:user', [auth, admin], async (req, res) => {
     console.log('put user controller')
+    console.log(req.body)
     const { error } = await validateUser({ data: req.body})
     if (error) 
         return res.status(400).send(error.details[0].message)
@@ -39,6 +40,9 @@ router.put('/:user', [auth, admin], async (req, res) => {
 })
 
 router.delete('/:user', [auth, admin], async (req, res) => {
+    if (req.params.user === req.user.user)
+        return res.status(400).send('Can not delete your own account')
+
     const user = await deleteUser(req.params.user)
 
     if (!user) 

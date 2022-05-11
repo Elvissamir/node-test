@@ -4,6 +4,7 @@ const schema = Joi.object({
     user: Joi.string()
         .required()
         .label('User'),
+    roles: Joi.array(),
     password: Joi
         .string()
         .required()
