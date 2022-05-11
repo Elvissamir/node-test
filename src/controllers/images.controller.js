@@ -29,7 +29,7 @@ router.delete('/', [auth], async (req, res) => {
     if (!result)
         return res.status(404).send('The file does not exist')
 
-    return res.send(req.body.image)
+    return res.send(req.body.imageName)
 })
 
 module.exports = router
