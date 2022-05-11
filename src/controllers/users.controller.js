@@ -29,8 +29,6 @@ router.post('/', [auth, admin], async (req, res) => {
 })
 
 router.put('/:user', [auth, admin], async (req, res) => {
-    console.log('put user controller')
-    console.log(req.body)
     const { error } = await validateUser({ data: req.body})
     if (error) 
         return res.status(400).send(error.details[0].message)
